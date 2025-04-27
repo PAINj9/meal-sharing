@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import Meal from "../Meal/Meal";
-import "./MealsList.css";
+import { Link } from "react-router-dom";
 
 function MealsList() {
   const [meals, setMeals] = useState([]);
@@ -13,15 +12,36 @@ function MealsList() {
   }, []);
 
   if (meals.length === 0) {
-    return <p>Loading...</p>;
+    return <p>Loading meals...</p>;
   }
 
   return (
-    <div>
+    <div style={{ padding: "20px" }}>
       <h2>Meals</h2>
-      <div className="meals-grid">
+      <div style={{
+        display: "grid",
+        gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
+        gap: "20px",
+        marginTop: "20px"
+      }}>
         {meals.map((meal) => (
-          <Meal key={meal.id} meal={meal} />
+          <div key={meal.id} style={{
+            backgroundColor: "#fff",
+            border: "1px solid #ddd",
+            borderRadius: "8px",
+            padding: "15px",
+            boxShadow: "0 2px 5px rgba(0,0,0,0.1)",
+            transition: "transform 0.2s",
+          }}>
+            <h3>{meal.name}</h3>
+            <p><strong>Price:</strong> ${meal.price}</p>
+            <Link to={`/meals/${meal.id}`} style={{
+              textDecoration: "none",
+              color: "#007bff",
+              marginTop: "10px",
+              display: "inline-block"
+            }}>View Details</Link>
+          </div>
         ))}
       </div>
     </div>
