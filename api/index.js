@@ -14,7 +14,6 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-
 app.get("/", (req, res) => {
   res.send(`
     <!DOCTYPE html>
@@ -66,7 +65,6 @@ app.get("/", (req, res) => {
   `);
 });
 
-
 app.get("/test", async (req, res) => {
   const SHOW_TABLES_QUERY =
     process.env.DB_CLIENT === "pg"
@@ -79,7 +77,6 @@ app.get("/test", async (req, res) => {
     res.status(500).json({ error: "Error fetching tables." });
   }
 });
-
 
 app.use("/api/reviews", reviewsRouter);
 app.use("/api/meals", mealsRouter);
