@@ -17,5 +17,4 @@ function TestPage() {
 
   return <span className="message">{message}</span>;
 }
-
 export default TestPage;
